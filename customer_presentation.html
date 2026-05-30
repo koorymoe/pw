@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شركة الأماني | حلول الشبكات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a1628;
+    --navy2:#0f2038;
+    --gold:#f0a500;
+    --cyan:#00d4ff;
+    --card:rgba(255,255,255,0.05);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Cairo',sans-serif;
+    background:var(--navy);
+    color:#eef3fa;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+  }
+  /* animated gradient background */
+  .bg-gradient{
+    position:fixed;inset:0;z-index:-3;
+    background:linear-gradient(135deg,#0a1628,#0f2038,#0a1f33,#0a1628);
+    background-size:400% 400%;
+    animation:bgShift 22s ease infinite;
+  }
+  @keyframes bgShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  /* particle canvas */
+  #particles{position:fixed;inset:0;z-index:-2;pointer-events:none;}
+
+  /* NAV TABS */
+  header.topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,22,40,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(240,165,0,0.25);
+    padding:14px 20px;
+  }
+  .brandline{
+    display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px;
+  }
+  .brandline .mini-logo{
+    font-size:1.6rem;font-weight:900;
+    background:linear-gradient(90deg,var(--gold),#fff,var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% auto;animation:shimmer 4s linear infinite;
+  }
+  @keyframes shimmer{to{background-position:200% center;}}
+  nav.tabs{
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  }
+  nav.tabs button{
+    font-family:'Cairo';font-weight:600;font-size:.92rem;
+    background:transparent;color:#cfe0f5;
+    border:1px solid rgba(0,212,255,0.3);
+    padding:8px 16px;border-radius:30px;cursor:pointer;
+    transition:all .3s;
+  }
+  nav.tabs button:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(240,165,0,0.4);}
+  nav.tabs button.active{
+    background:linear-gradient(90deg,rgba(240,165,0,0.25),rgba(0,212,255,0.25));
+    color:#fff;border-color:var(--gold);
+    box-shadow:0 0 18px rgba(240,165,0,0.5);
+  }
+
+  /* COVER */
+  .cover{
+    min-height:88vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:60px 20px;position:relative;
+  }
+  .cover .halo{
+    position:absolute;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(240,165,0,0.18),transparent 70%);
+    filter:blur(10px);animation:pulse 5s ease-in-out infinite;z-index:-1;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.15);opacity:1;}}
+  .cover h1{
+    font-size:5rem;font-weight:900;line-height:1.1;
+    background:linear-gradient(90deg,var(--gold),#fff8e1,var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% auto;animation:shimmer 4s linear infinite;
+    text-shadow:0 0 40px rgba(240,165,0,0.25);
+  }
+  .cover .sub{
+    margin-top:18px;font-size:1.6rem;font-weight:700;color:var(--cyan);
+    animation:glowText 3s ease-in-out infinite;
+  }
+  @keyframes glowText{
+    0%,100%{text-shadow:0 0 8px rgba(0,212,255,0.5);}
+    50%{text-shadow:0 0 22px rgba(0,212,255,0.9),0 0 30px rgba(240,165,0,0.4);}
+  }
+  .cover .tagline{
+    margin-top:26px;font-size:1.5rem;font-weight:700;letter-spacing:2px;
+    color:var(--gold);
+  }
+  .cover .tagline span{color:#fff;opacity:.5;margin:0 6px;}
+  .scroll-hint{margin-top:42px;color:#9fb4d0;font-size:.95rem;animation:bob 2s infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  /* SECTIONS */
+  section.cat{padding:60px 24px;display:none;animation:fadeIn .5s ease;}
+  section.cat.show{display:block;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .sec-head{
+    text-align:center;font-size:2.6rem;font-weight:900;margin-bottom:8px;
+    color:var(--gold);animation:glowGold 3.5s ease-in-out infinite;
+  }
+  @keyframes glowGold{
+    0%,100%{text-shadow:0 0 10px rgba(240,165,0,0.5);}
+    50%{text-shadow:0 0 24px rgba(240,165,0,0.95),0 0 36px rgba(0,212,255,0.35);}
+  }
+  .sec-sub{text-align:center;color:#9fb4d0;margin-bottom:40px;font-size:1.05rem;}
+
+  /* GRID */
+  .grid{
+    display:grid;gap:26px;max-width:1300px;margin:0 auto;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  }
+  .card{
+    background:var(--card);
+    border-radius:18px;padding:22px;position:relative;
+    border:1px solid transparent;
+    background-clip:padding-box;
+    overflow:hidden;
+    opacity:0;transform:scale(.8);
+    transition:transform .35s,box-shadow .35s;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;border-radius:18px;padding:1px;z-index:-1;
+    background:linear-gradient(135deg,var(--gold),rgba(0,212,255,0.6),var(--gold));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .card.reveal{animation:magicReveal .8s cubic-bezier(.2,.8,.3,1.2) forwards;}
+  @keyframes magicReveal{
+    0%{opacity:0;transform:scale(.4) rotate(-8deg);filter:blur(6px);}
+    60%{opacity:1;transform:scale(1.06) rotate(2deg);filter:blur(0);}
+    100%{opacity:1;transform:scale(1) rotate(0);}
+  }
+  .card:hover{
+    transform:scale(1.04) translateY(-6px);
+    box-shadow:0 0 28px rgba(240,165,0,0.55),0 0 50px rgba(0,212,255,0.2);
+  }
+  .card:hover .img-wrap::after{
+    opacity:1;animation:sparkBurst .7s ease;
+  }
+  @keyframes sparkBurst{
+    0%{transform:scale(.3);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:scale(1.6);opacity:0;}
+  }
+  .img-wrap{
+    height:200px;display:flex;align-items:center;justify-content:center;
+    position:relative;margin-bottom:16px;
+  }
+  .img-wrap::after{
+    content:"✦";position:absolute;top:6px;left:10px;color:var(--gold);
+    font-size:1.4rem;opacity:0;pointer-events:none;
+  }
+  .img-wrap img{
+    max-height:200px;max-width:100%;object-fit:contain;
+    animation:floaty 3s ease-in-out infinite;
+    filter:drop-shadow(0 8px 18px rgba(0,212,255,0.25));
+  }
+  @keyframes floaty{0%,100%{transform:translateY(-8px);}50%{transform:translateY(8px);}}
+
+  /* CSS device illustrations */
+  .device{animation:floaty 3s ease-in-out infinite;}
+  .dev-ap{
+    width:150px;height:150px;border-radius:50%;
+    background:radial-gradient(circle at 40% 35%,#ffffff,#cfd8e3 55%,#8896a8);
+    box-shadow:0 0 30px rgba(255,255,255,0.3),inset 0 -8px 18px rgba(0,0,0,0.2);
+    position:relative;
+  }
+  .dev-ap::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:22px;height:22px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);}
+  .dev-switch{
+    width:200px;height:90px;border-radius:10px;
+    background:linear-gradient(145deg,#1b2838,#0d1622);
+    box-shadow:0 0 24px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.06);
+    display:flex;align-items:flex-end;gap:6px;padding:10px;flex-wrap:wrap;justify-content:center;
+    border:1px solid rgba(0,212,255,0.25);
+  }
+  .dev-switch i{width:10px;height:10px;border-radius:2px;background:#1de96a;box-shadow:0 0 8px #1de96a;
+    animation:blink 1.6s infinite;}
+  .dev-switch i:nth-child(odd){animation-delay:.4s;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.35;}}
+  .dev-router{
+    width:190px;height:80px;border-radius:10px;position:relative;
+    background:linear-gradient(145deg,#1b2838,#0d1622);
+    border:1px solid rgba(240,165,0,0.3);
+    box-shadow:0 0 24px rgba(0,0,0,0.5);
+  }
+  .dev-router::before,.dev-router::after{
+    content:"";position:absolute;bottom:100%;width:4px;height:46px;border-radius:3px;
+    background:linear-gradient(var(--gold),#7a5400);
+  }
+  .dev-router::before{left:36px;transform:rotate(-12deg);}
+  .dev-router::after{right:36px;transform:rotate(12deg);}
+  .dev-conv{
+    width:120px;height:70px;border-radius:8px;
+    background:linear-gradient(145deg,#22303f,#0d1622);
+    border:1px solid rgba(0,212,255,0.3);
+    box-shadow:0 0 20px rgba(0,0,0,0.5);position:relative;
+  }
+  .dev-conv::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:34px;height:8px;border-radius:4px;background:var(--gold);box-shadow:0 0 10px var(--gold);}
+
+  .card h3{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:4px;}
+  .card .model{font-size:.85rem;color:var(--cyan);margin-bottom:12px;}
+  .card .price{
+    font-size:1.7rem;font-weight:900;color:var(--gold);margin-bottom:14px;
+    text-shadow:0 0 12px rgba(240,165,0,0.4);
+  }
+  .card ul{list-style:none;margin-bottom:18px;}
+  .card ul li{font-size:.9rem;color:#cfe0f5;margin-bottom:7px;display:flex;gap:8px;}
+  .card ul li::before{content:"✓";color:var(--cyan);font-weight:900;}
+  .btn-call{
+    display:block;width:100%;text-align:center;cursor:pointer;
+    font-family:'Cairo';font-weight:700;font-size:1rem;
+    padding:11px;border-radius:30px;border:none;color:#0a1628;
+    background:linear-gradient(90deg,var(--gold),#ffcb52);
+    transition:all .3s;
+  }
+  .btn-call:hover{box-shadow:0 0 22px rgba(240,165,0,0.8);transform:translateY(-2px);}
+
+  /* badge brand */
+  .brand-badge{
+    position:absolute;top:14px;left:14px;font-size:.7rem;font-weight:700;
+    padding:3px 10px;border-radius:20px;z-index:2;
+  }
+  .b-tp{background:rgba(0,212,255,0.18);color:var(--cyan);border:1px solid rgba(0,212,255,0.4);}
+  .b-hw{background:rgba(240,80,80,0.18);color:#ff9b9b;border:1px solid rgba(240,80,80,0.4);}
+
+  footer.secfoot{
+    text-align:center;margin-top:50px;padding-top:24px;
+    border-top:1px solid rgba(240,165,0,0.2);
+    color:#9fb4d0;font-size:.95rem;font-weight:600;
+  }
+  footer.secfoot b{color:var(--gold);}
+
+  @media(max-width:600px){
+    .cover h1{font-size:3rem;}
+    .cover .sub{font-size:1.2rem;}
+    .sec-head{font-size:1.9rem;}
+  }
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<canvas id="particles"></canvas>
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <div class="halo"></div>
+  <h1>شركة الأماني</h1>
+  <p class="sub">وكيل معتمد لـ TP-Link و Huawei</p>
+  <p class="tagline">جودة<span>•</span>ضمان<span>•</span>سعر مميز</p>
+  <p class="scroll-hint">اختر الفئة من الأعلى لاستكشاف المنتجات ⌄</p>
+</div>
+
+<!-- NAV -->
+<header class="topbar">
+  <div class="brandline"><span class="mini-logo">شركة الأماني</span></div>
+  <nav class="tabs" id="tabs">
+    <button data-cat="ap" class="active">نقاط الوصول اللاسلكية</button>
+    <button data-cat="sw">السويتشات</button>
+    <button data-cat="gw">البوابات والراوترات</button>
+    <button data-cat="mc">محولات الوسائط</button>
+    <button data-cat="ctrl">المتحكمات والانجكتورات</button>
+  </nav>
+</header>
+
+<!-- SECTIONS -->
+<section class="cat show" id="ap">
+  <h2 class="sec-head">نقاط الوصول اللاسلكية</h2>
+  <p class="sec-sub">Access Points — تغطية قوية وسرعات Wi-Fi 6 و Wi-Fi 7</p>
+  <div class="grid"></div>
+  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
+</section>
+
+<section class="cat" id="sw">
+  <h2 class="sec-head">السويتشات</h2>
+  <p class="sec-sub">Smart & Unmanaged Switches — شبكات مؤسسية موثوقة بدعم PoE</p>
+  <div class="grid"></div>
+  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
+</section>
+
+<section class="cat" id="gw">
+  <h2 class="sec-head">البوابات والراوترات</h2>
+  <p class="sec-sub">Gateways & Routers — أمان VPN واتصال خلوي 4G</p>
+  <div class="grid"></div>
+  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
+</section>
+
+<section class="cat" id="mc">
+  <h2 class="sec-head">محولات الوسائط</h2>
+  <p class="sec-sub">Media Converters & PoE — حلول الألياف الضوئية والطاقة</p>
+  <div class="grid"></div>
+  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
+</section>
+
+<section class="cat" id="ctrl">
+  <h2 class="sec-head">المتحكمات والانجكتورات</h2>
+  <p class="sec-sub">Controllers — إدارة مركزية ذكية لشبكتك</p>
+  <div class="grid"></div>
+  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
+</section>
+
+<script>
+/* ===== PRODUCT DATA ===== */
+const P = [
+ // ACCESS POINTS
+ {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP613 · Wi-Fi 6 AX1800',price:'100,000',img:'https://static.tp-link.com/upload/image-line/overview_01_large_20250109095828u.jpg',
+  ben:['سرعات Wi-Fi 6 حتى 1800 ميجابت','تركيب سقفي أنيق وتغطية واسعة','إدارة سحابية مجانية عبر Omada']},
+ {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP653 · Wi-Fi 6 AX3000',price:'135,000',img:'https://static.tp-link.com/upload/image-line/EAP650_EU_3.0_overview_01_large_20260206072215k.jpg',
+  ben:['أداء AX3000 لكثافة مستخدمين عالية','مثالية للمكاتب والمقاهي','منفذ جيجابت مع دعم PoE']},
+ {cat:'ap',brand:'tp',name:'نقطة وصول Wi-Fi 7',model:'TP-Link EAP772 · BE9300 ثلاثية النطاق',price:'250,000',img:'https://static.tp-link.com/upload/image-line/EAP770_UN_2.0_overview_01_large_20250428031950o.jpg',
+  ben:['أحدث تقنية Wi-Fi 7 ثلاثية النطاق','سرعات هائلة تصل 9.3 جيجابت','جاهزة للمستقبل ولأكثر الأجهزة طلباً']},
+ {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP245 · AC1750 Wi-Fi 5',price:'100,000',img:'https://static.tp-link.com/upload/image-line/EAP245_EU_3.0_01_large_1533284008713q_large_20211013013306q.jpg',
+  ben:['موثوقية AC1750 مجربة','تغطية ثابتة للمساحات المتوسطة','قيمة ممتازة مقابل السعر']},
+ {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول داخلية/خارجية',model:'TP-Link EAP225-Outdoor · AC1200',price:'110,000',
+  ben:['مقاومة للعوامل الجوية للخارج','مناسبة للحدائق والساحات','تركيب مرن داخلي وخارجي']},
+ {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول خارجية IP67',model:'TP-Link EAP610-Outdoor · AX1800',price:'180,000',
+  ben:['حماية IP67 ضد الماء والغبار','Wi-Fi 6 للأماكن المفتوحة','تحمل درجات حرارة قاسية']},
+ {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول سقفية',model:'TP-Link EAP115 · 300Mbps N',price:'35,000',
+  ben:['الخيار الأوفر لتوسعة الشبكة','تركيب سهل وسريع','مثالية للمنازل والمحلات الصغيرة']},
+ {cat:'ap',brand:'hw',dev:'ap',name:'نقطة وصول ذكية Huawei',model:'Huawei AP761 · 2.975Gbps',price:'409,500',
+  ben:['أداء مؤسسي فائق حتى 2.97 جيجابت','تقنيات Huawei الذكية للتغطية','مثالية للشركات الكبيرة']},
+ {cat:'ap',brand:'hw',dev:'ap',name:'نقطة وصول Wi-Fi 7 Huawei',model:'Huawei AP371 · BE3600',price:'193,250',
+  ben:['تقنية Wi-Fi 7 من Huawei','سرعات BE3600 عالية الكفاءة','استقرار وأمان عاليان']},
+
+ // SMART SWITCHES
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي PoE+',model:'TP-Link SG2005P-PD · 5 منافذ جيجابت',price:'134,500',
+  ben:['تغذية PoE+ للأجهزة مباشرة','إدارة ذكية عبر Omada','حجم مدمج وعملي']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي JetStream',model:'TP-Link TL-SG2008P · 8 منافذ PoE+',price:'115,250',
+  ben:['8 منافذ مع تغذية PoE+','إدارة متقدمة VLAN و QoS','مثالي للكاميرات ونقاط الوصول']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي JetStream',model:'TP-Link TL-SG2216 · 16 منفذ + 2 SFP',price:'158,000',
+  ben:['16 منفذ جيجابت + ألياف SFP','إدارة ويب كاملة','توسعة مرنة للشبكات']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش مُدار L2+',model:'TP-Link TL-SG3428 · 24 منفذ + 4 SFP',price:'195,000',
+  ben:['إدارة L2+ احترافية','24 منفذ + 4 منافذ SFP','أمان وتوجيه ثابت متقدم']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش رف PoE+',model:'TP-Link TL-SG1218MP · 18 منفذ',price:'205,000',
+  ben:['16 منفذ PoE+ عالي القدرة','تصميم رف 19 بوصة','طاقة وفيرة للكاميرات والأجهزة']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش Reverse PoE مُدار',model:'TP-Link RP108GE · 8 منافذ',price:'57,500',
+  ben:['تقنية Reverse PoE الفريدة','إدارة ذكية بسعر اقتصادي','مرونة في التركيب']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش صناعي PoE++',model:'TP-Link IES210GPP · 10 منافذ',price:'371,250',
+  ben:['تصميم صناعي متين','PoE++ بقدرة عالية جداً','يتحمل البيئات القاسية']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش 2.5G PoE++',model:'TP-Link TL-SG105PP-M2 · 5 منافذ',price:'185,500',
+  ben:['منافذ 2.5 جيجابت فائقة السرعة','PoE++ للأجهزة الحديثة','جاهز لشبكات الجيل القادم']},
+ {cat:'sw',brand:'hw',dev:'switch',name:'سويتش Huawei جيجابت',model:'Huawei S110-8T2ST · 8 منافذ',price:'105,000',
+  ben:['جودة Huawei المؤسسية','8 منافذ جيجابت موثوقة','أداء ثابت طويل الأمد']},
+
+ // UNMANAGED SWITCHES
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش PoE+ مكتبي',model:'TP-Link TL-SL1311P · 8 منافذ',price:'100,000',
+  ben:['تشغيل فوري بدون إعداد','تغذية PoE+ مدمجة','مثالي للكاميرات المراقبة']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش مكتبي',model:'TP-Link TL-SF1024M · 24 منفذ',price:'53,750',
+  ben:['24 منفذ بسعر اقتصادي','توصيل سريع وسهل','مناسب للمكاتب الكبيرة']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link LS1008G · 8 منافذ',price:'25,000',
+  ben:['الخيار الأوفر للجيجابت','بلا إعداد - وصّل وشغّل','استهلاك طاقة منخفض']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link TL-SG1008D · 8 منافذ',price:'30,000',
+  ben:['8 منافذ جيجابت كاملة','هيكل معدني متين','أداء سريع ومستقر']},
+ {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link TL-SG1005D · 5 منافذ',price:'32,000',
+  ben:['مثالي للمكاتب المنزلية','5 منافذ جيجابت','تصميم مدمج وصامت']},
+
+ // GATEWAYS
+ {cat:'gw',brand:'tp',dev:'router',name:'بوابة VPN 3 في 1',model:'TP-Link ER7212PC · Gateway',price:'320,000',
+  ben:['راوتر + سويتش + متحكم معاً','VPN آمن للفروع والعمل عن بعد','إدارة موحدة عبر Omada']},
+ {cat:'gw',brand:'tp',dev:'router',name:'راوتر 4G LTE + WiFi',model:'TP-Link ER706W-4G',price:'385,000',
+  ben:['اتصال خلوي 4G احتياطي','واي فاي مدمج للمكاتب','مثالي للمواقع بلا ألياف']},
+
+ // CONTROLLERS
+ {cat:'ctrl',brand:'tp',dev:'conv',name:'متحكم Omada',model:'TP-Link OC200 · يدير 100 جهاز',price:'105,000',
+  ben:['إدارة مركزية لـ100 جهاز','مراقبة الشبكة في الوقت الفعلي','إعداد سهل بدون خادم']},
+
+ // MEDIA CONVERTERS / POE
+ {cat:'mc',brand:'tp',dev:'conv',name:'حاقن PoE++ جيجابت',model:'TP-Link POE170S · 60W',price:'77,000',
+  ben:['طاقة 60 واط للأجهزة القوية','إضافة PoE لأي شبكة','تركيب بسيط وفوري']},
+ {cat:'mc',brand:'tp',dev:'conv',name:'محول وسائط WDM',model:'TP-Link TL-FC111B-20',price:'23,000',
+  ben:['تحويل نحاس إلى ألياف ضوئية','مسافات تصل 20 كم','سعر اقتصادي جداً']},
+ {cat:'mc',brand:'tp',dev:'conv',name:'محول وسائط WDM',model:'TP-Link TL-FC111A-20',price:'23,000',
+  ben:['الطرف المقابل لـ FC111B','اتصال ألياف موثوق','تركيب سريع']},
+ {cat:'mc',brand:'tp',dev:'conv',name:'محول ألياف أحادي',model:'TP-Link MC110CS · Single-Mode',price:'45,000',
+  ben:['ألياف أحادية النمط لمسافات طويلة','نقل بيانات مستقر','جودة TP-Link المضمونة']},
+ {cat:'mc',brand:'tp',dev:'conv',name:'محول ألياف متعدد',model:'TP-Link MC100CM · Multi-Mode',price:'46,000',
+  ben:['ألياف متعددة النمط للمسافات القصيرة','أداء عالي داخل المباني','توافق واسع']},
+];
+
+function devHTML(d){
+  if(d==='switch') return '<div class="device dev-switch">'+'<i></i>'.repeat(8)+'</div>';
+  if(d==='router') return '<div class="device dev-router"></div>';
+  if(d==='conv') return '<div class="device dev-conv"></div>';
+  return '<div class="device dev-ap"></div>';
+}
+
+function buildCard(p){
+  const visual = p.img
+    ? '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'
+    : devHTML(p.dev||'ap');
+  const badge = '<span class="brand-badge '+(p.brand==='hw'?'b-hw':'b-tp')+'">'+(p.brand==='hw'?'Huawei':'TP-Link')+'</span>';
+  return '<div class="card">'+badge+
+    '<div class="img-wrap">'+visual+'</div>'+
+    '<h3>'+p.name+'</h3>'+
+    '<div class="model">'+p.model+'</div>'+
+    '<div class="price">'+p.price+' د.ع</div>'+
+    '<ul>'+p.ben.map(b=>'<li>'+b+'</li>').join('')+'</ul>'+
+    '<button class="btn-call">اتصل بنا</button>'+
+    '</div>';
+}
+
+// populate grids
+document.querySelectorAll('section.cat').forEach(sec=>{
+  const cat=sec.id;
+  const grid=sec.querySelector('.grid');
+  grid.innerHTML = P.filter(p=>p.cat===cat).map(buildCard).join('');
+});
+
+// staggered magical reveal
+function reveal(sec){
+  const cards=sec.querySelectorAll('.card');
+  cards.forEach((c,i)=>{
+    c.classList.remove('reveal');c.style.opacity='0';c.style.transform='scale(.8)';
+    setTimeout(()=>c.classList.add('reveal'), i*90);
+  });
+}
+reveal(document.getElementById('ap'));
+
+// tab switching
+const tabs=document.getElementById('tabs');
+tabs.addEventListener('click',e=>{
+  const btn=e.target.closest('button');if(!btn)return;
+  tabs.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const cat=btn.dataset.cat;
+  document.querySelectorAll('section.cat').forEach(s=>s.classList.remove('show'));
+  const sec=document.getElementById(cat);
+  sec.classList.add('show');
+  reveal(sec);
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* ===== GOLDEN PARTICLE SYSTEM ===== */
+const cv=document.getElementById('particles');
+const ctx=cv.getContext('2d');
+let W,H,parts=[];
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+resize();addEventListener('resize',resize);
+function mk(){
+  return{
+    x:Math.random()*W, y:H+Math.random()*H,
+    r:Math.random()*2.2+0.6,
+    s:Math.random()*0.7+0.25,
+    a:Math.random()*0.6+0.2,
+    tw:Math.random()*Math.PI*2,
+    gold:Math.random()>0.35
+  };
+}
+for(let i=0;i<90;i++){parts.push(mk());}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  parts.forEach(p=>{
+    p.y-=p.s; p.tw+=0.04;
+    p.x+=Math.sin(p.tw)*0.3;
+    if(p.y< -10){Object.assign(p,mk());p.y=H+10;}
+    const flick=p.a*(0.6+0.4*Math.sin(p.tw));
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    const col=p.gold?'240,165,0':'0,212,255';
+    ctx.fillStyle='rgba('+col+','+flick+')';
+    ctx.shadowBlur=8;ctx.shadowColor='rgba('+col+',0.8)';
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
