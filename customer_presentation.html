@@ -1,490 +1,423 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شركة الأماني | حلول الشبكات</title>
+<html dir="rtl" lang="ar"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>شركة الأماني | عرض المنتجات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --navy:#0a1628;
-    --navy2:#0f2038;
-    --gold:#f0a500;
-    --cyan:#00d4ff;
-    --card:rgba(255,255,255,0.05);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Cairo',sans-serif;
-    background:var(--navy);
-    color:#eef3fa;
-    overflow-x:hidden;
-    position:relative;
-    min-height:100vh;
-  }
-  /* animated gradient background */
-  .bg-gradient{
-    position:fixed;inset:0;z-index:-3;
-    background:linear-gradient(135deg,#0a1628,#0f2038,#0a1f33,#0a1628);
-    background-size:400% 400%;
-    animation:bgShift 22s ease infinite;
-  }
-  @keyframes bgShift{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
-  /* particle canvas */
-  #particles{position:fixed;inset:0;z-index:-2;pointer-events:none;}
-
-  /* NAV TABS */
-  header.topbar{
-    position:sticky;top:0;z-index:50;
-    background:rgba(10,22,40,0.85);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(240,165,0,0.25);
-    padding:14px 20px;
-  }
-  .brandline{
-    display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px;
-  }
-  .brandline .mini-logo{
-    font-size:1.6rem;font-weight:900;
-    background:linear-gradient(90deg,var(--gold),#fff,var(--gold));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    background-size:200% auto;animation:shimmer 4s linear infinite;
-  }
-  @keyframes shimmer{to{background-position:200% center;}}
-  nav.tabs{
-    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
-  }
-  nav.tabs button{
-    font-family:'Cairo';font-weight:600;font-size:.92rem;
-    background:transparent;color:#cfe0f5;
-    border:1px solid rgba(0,212,255,0.3);
-    padding:8px 16px;border-radius:30px;cursor:pointer;
-    transition:all .3s;
-  }
-  nav.tabs button:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(240,165,0,0.4);}
-  nav.tabs button.active{
-    background:linear-gradient(90deg,rgba(240,165,0,0.25),rgba(0,212,255,0.25));
-    color:#fff;border-color:var(--gold);
-    box-shadow:0 0 18px rgba(240,165,0,0.5);
-  }
-
-  /* COVER */
-  .cover{
-    min-height:88vh;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;
-    padding:60px 20px;position:relative;
-  }
-  .cover .halo{
-    position:absolute;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,rgba(240,165,0,0.18),transparent 70%);
-    filter:blur(10px);animation:pulse 5s ease-in-out infinite;z-index:-1;
-  }
-  @keyframes pulse{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.15);opacity:1;}}
-  .cover h1{
-    font-size:5rem;font-weight:900;line-height:1.1;
-    background:linear-gradient(90deg,var(--gold),#fff8e1,var(--gold));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    background-size:200% auto;animation:shimmer 4s linear infinite;
-    text-shadow:0 0 40px rgba(240,165,0,0.25);
-  }
-  .cover .sub{
-    margin-top:18px;font-size:1.6rem;font-weight:700;color:var(--cyan);
-    animation:glowText 3s ease-in-out infinite;
-  }
-  @keyframes glowText{
-    0%,100%{text-shadow:0 0 8px rgba(0,212,255,0.5);}
-    50%{text-shadow:0 0 22px rgba(0,212,255,0.9),0 0 30px rgba(240,165,0,0.4);}
-  }
-  .cover .tagline{
-    margin-top:26px;font-size:1.5rem;font-weight:700;letter-spacing:2px;
-    color:var(--gold);
-  }
-  .cover .tagline span{color:#fff;opacity:.5;margin:0 6px;}
-  .scroll-hint{margin-top:42px;color:#9fb4d0;font-size:.95rem;animation:bob 2s infinite;}
-  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
-
-  /* SECTIONS */
-  section.cat{padding:60px 24px;display:none;animation:fadeIn .5s ease;}
-  section.cat.show{display:block;}
-  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-  .sec-head{
-    text-align:center;font-size:2.6rem;font-weight:900;margin-bottom:8px;
-    color:var(--gold);animation:glowGold 3.5s ease-in-out infinite;
-  }
-  @keyframes glowGold{
-    0%,100%{text-shadow:0 0 10px rgba(240,165,0,0.5);}
-    50%{text-shadow:0 0 24px rgba(240,165,0,0.95),0 0 36px rgba(0,212,255,0.35);}
-  }
-  .sec-sub{text-align:center;color:#9fb4d0;margin-bottom:40px;font-size:1.05rem;}
-
-  /* GRID */
-  .grid{
-    display:grid;gap:26px;max-width:1300px;margin:0 auto;
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  }
-  .card{
-    background:var(--card);
-    border-radius:18px;padding:22px;position:relative;
-    border:1px solid transparent;
-    background-clip:padding-box;
-    overflow:hidden;
-    opacity:0;transform:scale(.8);
-    transition:transform .35s,box-shadow .35s;
-  }
-  .card::before{
-    content:"";position:absolute;inset:0;border-radius:18px;padding:1px;z-index:-1;
-    background:linear-gradient(135deg,var(--gold),rgba(0,212,255,0.6),var(--gold));
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask-composite:exclude;
-  }
-  .card.reveal{animation:magicReveal .8s cubic-bezier(.2,.8,.3,1.2) forwards;}
-  @keyframes magicReveal{
-    0%{opacity:0;transform:scale(.4) rotate(-8deg);filter:blur(6px);}
-    60%{opacity:1;transform:scale(1.06) rotate(2deg);filter:blur(0);}
-    100%{opacity:1;transform:scale(1) rotate(0);}
-  }
-  .card:hover{
-    transform:scale(1.04) translateY(-6px);
-    box-shadow:0 0 28px rgba(240,165,0,0.55),0 0 50px rgba(0,212,255,0.2);
-  }
-  .card:hover .img-wrap::after{
-    opacity:1;animation:sparkBurst .7s ease;
-  }
-  @keyframes sparkBurst{
-    0%{transform:scale(.3);opacity:0;}
-    50%{opacity:1;}
-    100%{transform:scale(1.6);opacity:0;}
-  }
-  .img-wrap{
-    height:200px;display:flex;align-items:center;justify-content:center;
-    position:relative;margin-bottom:16px;
-  }
-  .img-wrap::after{
-    content:"✦";position:absolute;top:6px;left:10px;color:var(--gold);
-    font-size:1.4rem;opacity:0;pointer-events:none;
-  }
-  .img-wrap img{
-    max-height:200px;max-width:100%;object-fit:contain;
-    animation:floaty 3s ease-in-out infinite;
-    filter:drop-shadow(0 8px 18px rgba(0,212,255,0.25));
-  }
-  @keyframes floaty{0%,100%{transform:translateY(-8px);}50%{transform:translateY(8px);}}
-
-  /* CSS device illustrations */
-  .device{animation:floaty 3s ease-in-out infinite;}
-  .dev-ap{
-    width:150px;height:150px;border-radius:50%;
-    background:radial-gradient(circle at 40% 35%,#ffffff,#cfd8e3 55%,#8896a8);
-    box-shadow:0 0 30px rgba(255,255,255,0.3),inset 0 -8px 18px rgba(0,0,0,0.2);
-    position:relative;
-  }
-  .dev-ap::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:22px;height:22px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);}
-  .dev-switch{
-    width:200px;height:90px;border-radius:10px;
-    background:linear-gradient(145deg,#1b2838,#0d1622);
-    box-shadow:0 0 24px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.06);
-    display:flex;align-items:flex-end;gap:6px;padding:10px;flex-wrap:wrap;justify-content:center;
-    border:1px solid rgba(0,212,255,0.25);
-  }
-  .dev-switch i{width:10px;height:10px;border-radius:2px;background:#1de96a;box-shadow:0 0 8px #1de96a;
-    animation:blink 1.6s infinite;}
-  .dev-switch i:nth-child(odd){animation-delay:.4s;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
-  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.35;}}
-  .dev-router{
-    width:190px;height:80px;border-radius:10px;position:relative;
-    background:linear-gradient(145deg,#1b2838,#0d1622);
-    border:1px solid rgba(240,165,0,0.3);
-    box-shadow:0 0 24px rgba(0,0,0,0.5);
-  }
-  .dev-router::before,.dev-router::after{
-    content:"";position:absolute;bottom:100%;width:4px;height:46px;border-radius:3px;
-    background:linear-gradient(var(--gold),#7a5400);
-  }
-  .dev-router::before{left:36px;transform:rotate(-12deg);}
-  .dev-router::after{right:36px;transform:rotate(12deg);}
-  .dev-conv{
-    width:120px;height:70px;border-radius:8px;
-    background:linear-gradient(145deg,#22303f,#0d1622);
-    border:1px solid rgba(0,212,255,0.3);
-    box-shadow:0 0 20px rgba(0,0,0,0.5);position:relative;
-  }
-  .dev-conv::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:34px;height:8px;border-radius:4px;background:var(--gold);box-shadow:0 0 10px var(--gold);}
-
-  .card h3{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:4px;}
-  .card .model{font-size:.85rem;color:var(--cyan);margin-bottom:12px;}
-  .card .price{
-    font-size:1.7rem;font-weight:900;color:var(--gold);margin-bottom:14px;
-    text-shadow:0 0 12px rgba(240,165,0,0.4);
-  }
-  .card ul{list-style:none;margin-bottom:18px;}
-  .card ul li{font-size:.9rem;color:#cfe0f5;margin-bottom:7px;display:flex;gap:8px;}
-  .card ul li::before{content:"✓";color:var(--cyan);font-weight:900;}
-  .btn-call{
-    display:block;width:100%;text-align:center;cursor:pointer;
-    font-family:'Cairo';font-weight:700;font-size:1rem;
-    padding:11px;border-radius:30px;border:none;color:#0a1628;
-    background:linear-gradient(90deg,var(--gold),#ffcb52);
-    transition:all .3s;
-  }
-  .btn-call:hover{box-shadow:0 0 22px rgba(240,165,0,0.8);transform:translateY(-2px);}
-
-  /* badge brand */
-  .brand-badge{
-    position:absolute;top:14px;left:14px;font-size:.7rem;font-weight:700;
-    padding:3px 10px;border-radius:20px;z-index:2;
-  }
-  .b-tp{background:rgba(0,212,255,0.18);color:var(--cyan);border:1px solid rgba(0,212,255,0.4);}
-  .b-hw{background:rgba(240,80,80,0.18);color:#ff9b9b;border:1px solid rgba(240,80,80,0.4);}
-
-  footer.secfoot{
-    text-align:center;margin-top:50px;padding-top:24px;
-    border-top:1px solid rgba(240,165,0,0.2);
-    color:#9fb4d0;font-size:.95rem;font-weight:600;
-  }
-  footer.secfoot b{color:var(--gold);}
-
-  @media(max-width:600px){
-    .cover h1{font-size:3rem;}
-    .cover .sub{font-size:1.2rem;}
-    .sec-head{font-size:1.9rem;}
-  }
-</style>
-</head>
-<body>
-<div class="bg-gradient"></div>
-<canvas id="particles"></canvas>
-
-<!-- COVER -->
-<div class="cover" id="cover">
-  <div class="halo"></div>
-  <h1>شركة الأماني</h1>
-  <p class="sub">وكيل معتمد لـ TP-Link و Huawei</p>
-  <p class="tagline">جودة<span>•</span>ضمان<span>•</span>سعر مميز</p>
-  <p class="scroll-hint">اختر الفئة من الأعلى لاستكشاف المنتجات ⌄</p>
-</div>
-
-<!-- NAV -->
-<header class="topbar">
-  <div class="brandline"><span class="mini-logo">شركة الأماني</span></div>
-  <nav class="tabs" id="tabs">
-    <button data-cat="ap" class="active">نقاط الوصول اللاسلكية</button>
-    <button data-cat="sw">السويتشات</button>
-    <button data-cat="gw">البوابات والراوترات</button>
-    <button data-cat="mc">محولات الوسائط</button>
-    <button data-cat="ctrl">المتحكمات والانجكتورات</button>
-  </nav>
-</header>
-
-<!-- SECTIONS -->
-<section class="cat show" id="ap">
-  <h2 class="sec-head">نقاط الوصول اللاسلكية</h2>
-  <p class="sec-sub">Access Points — تغطية قوية وسرعات Wi-Fi 6 و Wi-Fi 7</p>
-  <div class="grid"></div>
-  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
-</section>
-
-<section class="cat" id="sw">
-  <h2 class="sec-head">السويتشات</h2>
-  <p class="sec-sub">Smart & Unmanaged Switches — شبكات مؤسسية موثوقة بدعم PoE</p>
-  <div class="grid"></div>
-  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
-</section>
-
-<section class="cat" id="gw">
-  <h2 class="sec-head">البوابات والراوترات</h2>
-  <p class="sec-sub">Gateways & Routers — أمان VPN واتصال خلوي 4G</p>
-  <div class="grid"></div>
-  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
-</section>
-
-<section class="cat" id="mc">
-  <h2 class="sec-head">محولات الوسائط</h2>
-  <p class="sec-sub">Media Converters & PoE — حلول الألياف الضوئية والطاقة</p>
-  <div class="grid"></div>
-  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
-</section>
-
-<section class="cat" id="ctrl">
-  <h2 class="sec-head">المتحكمات والانجكتورات</h2>
-  <p class="sec-sub">Controllers — إدارة مركزية ذكية لشبكتك</p>
-  <div class="grid"></div>
-  <footer class="secfoot">شركة الأماني | <b>جودة. ضمان. سعر مميز</b> | للتواصل: قسم المبيعات</footer>
-</section>
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:#0a1628;color:#e8eef7;overflow-x:hidden;
+  background:linear-gradient(-45deg,#0a1628,#0d1f33,#0a1628,#10283f);background-size:400% 400%;animation:bgShift 20s ease infinite}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+a{color:inherit;text-decoration:none}
+.layout{display:flex;position:relative;z-index:1}
+.sidebar{width:260px;position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:rgba(10,22,40,0.85);backdrop-filter:blur(12px);border-left:1px solid rgba(240,165,0,0.25);padding:24px 16px}
+.sidebar h2{color:#f0a500;font-size:1.1rem;margin-bottom:18px;text-align:center}
+.sidebar a{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;margin-bottom:6px;
+  transition:all .25s;font-size:.95rem;border:1px solid transparent}
+.sidebar a:hover{background:rgba(240,165,0,0.12);border-color:rgba(240,165,0,0.4);transform:translateX(-4px)}
+.sidebar a .ic{font-size:1.3rem}
+.main{flex:1;padding:0 32px 80px}
+.header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  padding:22px 0;position:sticky;top:0;z-index:5;background:rgba(10,22,40,0.7);backdrop-filter:blur(8px)}
+.logo{display:flex;align-items:center;gap:14px}
+.logo .mark{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#f0a500,#00d4ff);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:#0a1628;
+  box-shadow:0 0 22px rgba(240,165,0,0.5)}
+.logo .txt h1{font-size:1.5rem;background:linear-gradient(90deg,#f0a500,#00d4ff,#f0a500);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+.logo .txt p{font-size:.85rem;color:#9fb3c8}
+.badge{padding:8px 16px;border:1px solid #00d4ff;border-radius:30px;color:#00d4ff;font-size:.85rem;font-weight:600}
+.cover{position:relative;border-radius:24px;overflow:hidden;margin:18px 0 40px;padding:70px 30px;text-align:center;
+  background:radial-gradient(circle at 50% 20%,rgba(0,212,255,0.12),transparent 60%),rgba(255,255,255,0.03);
+  border:1px solid rgba(240,165,0,0.3)}
+.cover h2{font-size:2.4rem;margin-bottom:14px;background:linear-gradient(90deg,#f0a500,#00d4ff,#f0a500);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite}
+.cover p{font-size:1.15rem;color:#c7d6e6;max-width:680px;margin:0 auto}
+.section-title{font-size:1.7rem;color:#f0a500;margin:50px 0 24px;padding-right:14px;border-right:4px solid #00d4ff;
+  position:relative;background:linear-gradient(90deg,#f0a500,#fff,#f0a500);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 5s linear infinite}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.sidebar{display:none}.main{padding:0 16px 60px}}
+.product-card{background:rgba(255,255,255,0.05);border:1px solid rgba(240,165,0,0.3);border-radius:16px;
+  backdrop-filter:blur(10px);padding:20px;transition:all .3s ease;position:relative;overflow:hidden}
+.product-card:hover{border-color:#f0a500;box-shadow:0 0 30px rgba(240,165,0,0.3);transform:translateY(-5px)}
+.product-card.magic-reveal{opacity:0;transform:scale(0.8) translateY(20px);filter:blur(4px);
+  transition:all .6s cubic-bezier(0.175,0.885,0.32,1.275)}
+.product-card.magic-reveal.revealed{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}
+.img-container{height:180px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  background:radial-gradient(circle,rgba(0,212,255,0.08),transparent 70%);border-radius:12px}
+.product-img{max-height:170px;max-width:100%;object-fit:contain;animation:float 3s ease-in-out infinite;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,0.5))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.css-device-wrap{height:170px;width:100%;align-items:center;justify-content:center;animation:float 3s ease-in-out infinite}
+.css-device.disc{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,#cdd9e6);
+  box-shadow:0 0 35px rgba(0,212,255,0.5),inset 0 -8px 20px rgba(0,0,0,0.15)}
+.css-device.disc .disc-inner{width:34px;height:34px;border-radius:50%;background:rgba(0,212,255,0.3);
+  margin:53px auto;box-shadow:0 0 12px #00d4ff}
+.css-device.outdoor{width:90px;height:150px;border-radius:12px;background:linear-gradient(135deg,#fff,#d3dde8);
+  position:relative;box-shadow:0 0 25px rgba(255,255,255,0.25)}
+.css-device.outdoor .ant{position:absolute;top:-22px;width:5px;height:26px;background:#aab8c6;border-radius:3px}
+.css-device.outdoor .ant:nth-child(1){right:24px}.css-device.outdoor .ant:nth-child(2){right:60px}
+.css-device.box{width:170px;height:80px;border-radius:10px;background:linear-gradient(135deg,#1c3047,#0e1f30);
+  border:1px solid rgba(0,212,255,0.4);display:flex;align-items:flex-end;padding:10px;box-shadow:0 0 22px rgba(0,212,255,0.25)}
+.css-device.box .ports{display:flex;gap:8px}
+.css-device.box .ports i{width:14px;height:10px;background:#f0a500;border-radius:2px;box-shadow:0 0 6px #f0a500}
+.product-card h3{font-size:1.2rem;margin-bottom:4px;color:#fff}
+.model{font-size:.8rem;color:#7d93a8;margin-bottom:10px}
+.price{color:#f0a500;font-size:1.8rem;font-weight:700;margin-bottom:12px}
+.price span{font-size:1rem}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab-btn{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:#cfe6f2;padding:6px 12px;
+  border-radius:20px;font-family:inherit;font-size:.8rem;cursor:pointer;transition:all .2s}
+.tab-btn.active{background:#00d4ff;color:#0a1628;font-weight:700}
+.tab-pane{display:none;font-size:.92rem;line-height:1.8}
+.tab-pane.active{display:block;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.tab-pane ul{list-style:none}
+.tab-pane ul li{padding:5px 0 5px 0;position:relative;padding-right:22px}
+.tab-pane ul li:before{content:"✦";position:absolute;right:0;color:#f0a500}
+.spec-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.spec-table th{text-align:right;color:#00d4ff;padding:6px 4px;width:42%;font-weight:600;vertical-align:top}
+.spec-table td{padding:6px 4px;color:#dce7f2;border-bottom:1px solid rgba(255,255,255,0.06)}
+.warranty-pill{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:20px;
+  background:rgba(240,165,0,0.15);border:1px solid rgba(240,165,0,0.4);color:#f0a500;font-size:.82rem}
+.cta{display:block;margin-top:14px;text-align:center;padding:12px;border-radius:12px;font-weight:700;
+  background:linear-gradient(135deg,#f0a500,#ffce5a);color:#0a1628;transition:all .25s}
+.cta:hover{box-shadow:0 0 25px rgba(240,165,0,0.6);transform:scale(1.03)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.edu-card{background:rgba(255,255,255,0.04);border:1px solid rgba(0,212,255,0.25);border-radius:16px;padding:22px;transition:all .3s}
+.edu-card:hover{border-color:#00d4ff;box-shadow:0 0 25px rgba(0,212,255,0.25);transform:translateY(-4px)}
+.edu-card .ic{font-size:2rem;margin-bottom:10px}
+.edu-card h4{color:#f0a500;margin-bottom:8px;font-size:1.15rem}
+.edu-card p{color:#c7d6e6;line-height:1.8;font-size:.93rem}
+.cmp-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem;
+  background:rgba(255,255,255,0.03);border-radius:12px;overflow:hidden}
+.cmp-table th{background:rgba(240,165,0,0.15);color:#f0a500;padding:12px;text-align:right}
+.cmp-table td{padding:11px;border-bottom:1px solid rgba(255,255,255,0.07);color:#dce7f2}
+.cmp-table tr:hover td{background:rgba(0,212,255,0.06)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.step{background:rgba(255,255,255,0.04);border:1px solid rgba(240,165,0,0.3);border-radius:16px;padding:22px;position:relative}
+.step .num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f0a500,#00d4ff);
+  color:#0a1628;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:12px}
+.step h4{color:#f0a500;margin-bottom:8px}.step p{color:#c7d6e6;line-height:1.7;font-size:.92rem}
+.sparkle{position:absolute;width:6px;height:6px;background:#f0a500;border-radius:50%;pointer-events:none;
+  box-shadow:0 0 8px #f0a500;animation:burst .8s ease-out forwards}
+@keyframes burst{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}}
+</style></head>
+<body><canvas id="particles"></canvas>
+<div class="layout"><aside class="sidebar"><h2>الأقسام</h2><a href="#aps"><span class="ic">📡</span><span>نقاط الوصول اللاسلكية</span></a><a href="#smartsw"><span class="ic">🔀</span><span>السويتشات الذكية</span></a><a href="#basicsw"><span class="ic">🔌</span><span>السويتشات العادية</span></a><a href="#routers"><span class="ic">🌐</span><span>البوابات والراوترات</span></a><a href="#ctrl"><span class="ic">🎛️</span><span>المتحكمات والانجكتورات</span></a><a href="#media"><span class="ic">💡</span><span>محولات الوسائط</span></a></aside><main class="main"><div class="header"><div class="logo"><div class="mark">أ</div><div class="txt"><h1>شركة الأماني</h1><p>حلول الشبكات في العراق</p></div></div><div class="badge">وكيل معتمد TP-Link | Huawei</div></div><section class="cover"><h2>شبكتك بأيدٍ أمينة</h2><p>أحدث أجهزة الشبكات من TP-Link و Huawei بأفضل الأسعار في العراق. نقاط وصول، سويتشات، راوترات وحلول الألياف الضوئية — كل ما يحتاجه مشروعك في مكان واحد.</p></section><h2 class="section-title" id="aps">📡 نقاط الوصول اللاسلكية</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/overview_01_large_20250109095828u.jpg" alt="TP-Link EAP613" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP613</h3><div class="model">EAP613</div>
+<div class="price">100,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c0f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c0u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c0f"><ul><li>سرعة لاسلكية 1775 Mbps</li><li>يدعم OFDMA + MU-MIMO</li><li>إدارة مركزية Omada SDN</li></ul></div>
+<div class="tab-pane" id="c0u"><p>مكاتب، فنادق، محلات</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/EAP650_EU_3.0_overview_01_large_20260206072215k.jpg" alt="TP-Link EAP653" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP653</h3><div class="model">EAP653</div>
+<div class="price">135,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c1f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c1u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c1f"><ul><li>سرعة 2976 Mbps</li><li>WPA3 أمان متقدم</li><li>160MHz Channel</li></ul></div>
+<div class="tab-pane" id="c1u"><p>مطاعم، مستشفيات، مدارس</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/EAP770_UN_2.0_overview_01_large_20250428031950o.jpg" alt="TP-Link EAP772 BE9300" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP772 BE9300</h3><div class="model">EAP772</div>
+<div class="price">250,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c2f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c2u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c2f"><ul><li>Wi-Fi 7 أحدث جيل</li><li>سرعة 9300 Mbps</li><li>تقنية MLO + 4K-QAM</li></ul></div>
+<div class="tab-pane" id="c2u"><p>شركات كبيرة، بنايات فاخرة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/EAP245_EU_3.0_01_large_1533284008713q_large_20211013013306q.jpg" alt="TP-Link EAP245" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP245</h3><div class="model">EAP245</div>
+<div class="price">100,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c3f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c3u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c3f"><ul><li>سرعة 1750 Mbps</li><li>MU-MIMO</li><li>سعر اقتصادي مناسب</li></ul></div>
+<div class="tab-pane" id="c3u"><p>محلات، بيوت، مكاتب بسيطة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/EAP225-Outdoor_large_20230821083554x.png" alt="TP-Link EAP225-Outdoor" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP225-Outdoor</h3><div class="model">EAP225-Outdoor</div>
+<div class="price">110,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c4f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c4u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c4f"><ul><li>للداخل والخارج</li><li>تجوال سلس Seamless Roaming</li><li>إدارة Omada</li></ul></div>
+<div class="tab-pane" id="c4u"><p>حدائق، مواقف سيارات، مناطق مفتوحة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link EAP610-Outdoor" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device outdoor"><div class="ant"></div><div class="ant"></div></div></div></div>
+<h3>TP-Link EAP610-Outdoor</h3><div class="model">EAP610-Outdoor</div>
+<div class="price">180,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c5f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c5u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c5f"><ul><li>IP67 مقاوم للماء والغبار</li><li>Wi-Fi 6 خارجي</li><li>Omada Mesh تغطية موسعة</li></ul></div>
+<div class="tab-pane" id="c5u"><p>ملاعب، مزارع، أسطح، مناطق مفتوحة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/01_large_20250109111654y.jpg" alt="TP-Link EAP115" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link EAP115</h3><div class="model">EAP115</div>
+<div class="price">35,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c6f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c6u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c6f"><ul><li>سعر اقتصادي جداً</li><li>سهل التركيب</li><li>مناسب للاستخدام البسيط</li></ul></div>
+<div class="tab-pane" id="c6u"><p>محلات صغيرة، ميزانية محدودة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="Huawei AP761" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
+<h3>Huawei AP761</h3><div class="model">AP761</div>
+<div class="price">409,500 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c7f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c7u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c7f"><ul><li>هوائيات ذكية Built-in Smart Antennas</li><li>سرعة 2.975 Gbps</li><li>تغطية دقيقة وواسعة</li></ul></div>
+<div class="tab-pane" id="c7u"><p>مشاريع Huawei، شركات كبيرة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="Huawei AP371" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
+<h3>Huawei AP371</h3><div class="model">AP371</div>
+<div class="price">193,250 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c8f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c8u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c8f"><ul><li>Wi-Fi 7 من Huawei</li><li>سرعة 3.57 Gbps</li><li>QAM-1024 + MU-MIMO</li></ul></div>
+<div class="tab-pane" id="c8u"><p>بيئات Wi-Fi 7 مع Huawei</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div><h2 class="section-title" id="smartsw">🔀 السويتشات الذكية</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/SG2005P-PD_UN_2.0_overview_01_normal_20260323052921h.jpg" alt="TP-Link SG2005P-PD" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link SG2005P-PD</h3><div class="model">SG2005P-PD</div>
+<div class="price">134,500 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c9f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c9u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c9f"><ul><li>5 منافذ جيجابت</li><li>PoE Passthrough</li><li>إدارة Omada</li></ul></div>
+<div class="tab-pane" id="c9u"><p>نقاط وصول + كاميرات في مكان واحد</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/TL-SG2008P(UN)1.0_01_large_1594869482014k.jpg" alt="TP-Link TL-SG2008P" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG2008P</h3><div class="model">TL-SG2008P</div>
+<div class="price">115,250 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c10f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c10u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c10f"><ul><li>8 منافذ جيجابت</li><li>4 منافذ PoE+ 62W</li><li>تشغيل صامت Silent</li></ul></div>
+<div class="tab-pane" id="c10u"><p>مكاتب، غرف خوادم صغيرة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/res/images/products/large/TL-SG2216-01.jpg" alt="TP-Link TL-SG2216" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG2216</h3><div class="model">TL-SG2216</div>
+<div class="price">158,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c11f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c11u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c11f"><ul><li>16 منفذ + 2 SFP ألياف</li><li>أمان ACL + DHCP Snooping</li><li>Rack-Mount</li></ul></div>
+<div class="tab-pane" id="c11u"><p>بنايات متوسطة، مشاريع ألياف</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/TL-SG3428_UN_2.0_01_normal_1610956416747t.jpg" alt="TP-Link TL-SG3428" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG3428</h3><div class="model">TL-SG3428</div>
+<div class="price">195,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c12f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c12u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c12f"><ul><li>24 منفذ + 4 SFP</li><li>إدارة سحابية Omada</li><li>L2+ Managed</li></ul></div>
+<div class="tab-pane" id="c12u"><p>شركات 20-50 موظف، بنايات</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/01_large_20240204033840y.jpg" alt="TP-Link TL-SG1218MP" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG1218MP</h3><div class="model">TL-SG1218MP</div>
+<div class="price">205,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c13f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c13u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c13f"><ul><li>16 منفذ PoE+ رك</li><li>PoE Budget 250W</li><li>مع 2 منفذ SFP</li></ul></div>
+<div class="tab-pane" id="c13u"><p>فنادق، مستشفيات، كاميرات مراقبة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/assets/images/product/tl-rp108ge_v1/tl-rp108ge_1.jpg" alt="TP-Link RP108GE" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link RP108GE</h3><div class="model">RP108GE</div>
+<div class="price">57,500 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c14f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c14u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c14f"><ul><li>Reverse PoE فريد</li><li>Omada SDN</li><li>VLAN + QoS</li></ul></div>
+<div class="tab-pane" id="c14u"><p>حلول Reverse PoE خاصة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/IES210GPP_UN_1.0_Overview_01_large_20250313124809q.jpg" alt="TP-Link IES210GPP" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link IES210GPP</h3><div class="model">IES210GPP</div>
+<div class="price">371,250 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c15f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c15u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c15f"><ul><li>صناعي معدني للبيئات القاسية</li><li>Omada SDN</li><li>Extend حتى 250م</li></ul></div>
+<div class="tab-pane" id="c15u"><p>مصانع، مستودعات، بيئات صناعية</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/TL-SG105PP-M2_1_large_20240130083905e.jpg" alt="TP-Link TL-SG105PP-M2" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG105PP-M2</h3><div class="model">TL-SG105PP-M2</div>
+<div class="price">185,500 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c16f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c16u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c16f"><ul><li>2.5Gbps لكل منفذ</li><li>PoE++ 123W عالي</li><li>هيكل معدني متين</li></ul></div>
+<div class="tab-pane" id="c16u"><p>Wi-Fi 7 APs، كاميرات 4K</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="Huawei S110-8T2ST" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>Huawei S110-8T2ST</h3><div class="model">S110-8T2ST</div>
+<div class="price">105,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c17f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c17u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c17f"><ul><li>8 منافذ GE + SFP</li><li>من Huawei</li><li>Auto MDI/MDIX</li></ul></div>
+<div class="tab-pane" id="c17u"><p>مشاريع Huawei، شبكات بسيطة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div><h2 class="section-title" id="basicsw">🔌 السويتشات العادية</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link TL-SL1311P" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SL1311P</h3><div class="model">TL-SL1311P</div>
+<div class="price">100,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c18f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c18u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c18f"><ul><li>8 منافذ PoE+ 65W</li><li>3 منافذ جيجابت</li><li>Plug & Play بسيط</li></ul></div>
+<div class="tab-pane" id="c18u"><p>كاميرات مراقبة، نقاط وصول بسيطة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/res/images/products/TL-SF1024M_un_V1_987_large_1_20150418192439.jpg" alt="TP-Link TL-SF1024M" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SF1024M</h3><div class="model">TL-SF1024M</div>
+<div class="price">53,750 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c19f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c19u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c19f"><ul><li>24 منفذ 100Mbps</li><li>مناسب شبكات صغيرة</li><li>سعر اقتصادي</li></ul></div>
+<div class="tab-pane" id="c19u"><p>مكاتب صغيرة، شبكات بسيطة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link LS1008G" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link LS1008G</h3><div class="model">LS1008G</div>
+<div class="price">25,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c20f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c20u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c20f"><ul><li>8 منافذ جيجابت</li><li>Plug & Play</li><li>أرخص سعر جيجابت</li></ul></div>
+<div class="tab-pane" id="c20u"><p>منازل، مكاتب صغيرة، ميزانية محدودة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link TL-SG1008D" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG1008D</h3><div class="model">TL-SG1008D</div>
+<div class="price">30,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c21f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c21u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c21f"><ul><li>8 منافذ جيجابت</li><li>Green Ethernet</li><li>Plug & Play</li></ul></div>
+<div class="tab-pane" id="c21u"><p>منازل، مكاتب صغيرة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link TL-SG1005D" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-SG1005D</h3><div class="model">TL-SG1005D</div>
+<div class="price">32,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c22f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c22u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c22f"><ul><li>5 منافذ جيجابت</li><li>Plug & Play</li><li>تصميم مدمج</li></ul></div>
+<div class="tab-pane" id="c22u"><p>بيوت، أماكن محدودة المساحة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div><h2 class="section-title" id="routers">🌐 البوابات والراوترات</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/ER7212PC_UN_2.20_overview_01_large_20260424025744g.jpg" alt="TP-Link ER7212PC" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link ER7212PC</h3><div class="model">ER7212PC</div>
+<div class="price">320,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c23f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c23u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c23f"><ul><li>راوتر + سويتش + كنترولر في جهاز واحد</li><li>VPN كامل + جدار حماية</li><li>Omada SDN إدارة مركزية</li></ul></div>
+<div class="tab-pane" id="c23u"><p>شركات 10-30 موظف، مطاعم، مولات</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/ER706W_UN_1.20_overview_01_large_20240804072154p.jpg" alt="TP-Link ER706W-4G" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link ER706W-4G</h3><div class="model">ER706W-4G</div>
+<div class="price">385,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c24f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c24u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c24f"><ul><li>4G LTE + شريحة SIM</li><li>WiFi AC مدمج</li><li>بدون حاجة خط أرضي</li></ul></div>
+<div class="tab-pane" id="c24u"><p>مواقع بعيدة، إنترنت احتياطي</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div><h2 class="section-title" id="ctrl">🎛️ المتحكمات والانجكتورات</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/OC200_UN_3.0_overview_01_large_20260325014341k.jpg" alt="TP-Link OC200" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link OC200</h3><div class="model">OC200</div>
+<div class="price">105,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c25f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c25u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c25f"><ul><li>يدير 100 نقطة وصول + سويتش + راوتر</li><li>واجهة ويب + تطبيق Omada</li><li>هيكل معدني متين</li></ul></div>
+<div class="tab-pane" id="c25u"><p>مع أي 3+ أجهزة Omada</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/TL-POE170S_UN_1.0_1_large_20211018012221q.jpg" alt="TP-Link POE170S" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link POE170S</h3><div class="model">POE170S</div>
+<div class="price">77,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c26f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c26u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c26f"><ul><li>60W PoE++ Injector</li><li>Plug & Play</li><li>يدعم Wi-Fi 6 AP + IP Phone + PTZ</li></ul></div>
+<div class="tab-pane" id="c26u"><p>عند عدم توفر سويتش PoE</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div><h2 class="section-title" id="media">💡 محولات الوسائط</h2><div class="grid"><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/FC111B-20(TL-FC111B-20)_normal_20250208085152t.jpg" alt="TP-Link TL-FC111B-20" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-FC111B-20</h3><div class="model">TL-FC111B-20</div>
+<div class="price">23,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c27f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c27u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c27f"><ul><li>إيثرنت ↔ ألياف ضوئية</li><li>مسافات حتى 20 كم</li><li>تقنية WDM (ليف واحد)</li></ul></div>
+<div class="tab-pane" id="c27u"><p>يعمل مع TL-FC111A-20 كزوج</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="" alt="TP-Link TL-FC111A-20" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link TL-FC111A-20</h3><div class="model">TL-FC111A-20</div>
+<div class="price">23,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c28f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c28u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c28f"><ul><li>الزوج المكمل لـ FC111B-20</li><li>مسافات حتى 20 كم</li><li>SC منفذ ألياف</li></ul></div>
+<div class="tab-pane" id="c28u"><p>يجب استخدامهما معاً</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/MC110CS_UN_7.30_F_large_20250814085821s.jpg" alt="TP-Link MC110CS" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link MC110CS</h3><div class="model">MC110CS</div>
+<div class="price">45,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c29f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c29u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c29f"><ul><li>Single-Mode ألياف أحادية</li><li>حتى 20 كم</li><li>استهلاك طاقة 1.52W فقط</li></ul></div>
+<div class="tab-pane" id="c29u"><p>مسافات طويلة بين المباني</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div><div class="product-card magic-reveal">
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/MC100CM_UN_6.30_F_large_20250624082723j.jpg" alt="TP-Link MC100CM" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:none"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<h3>TP-Link MC100CM</h3><div class="model">MC100CM</div>
+<div class="price">46,000 <span>د.ع</span></div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab(this,'c30f')">المميزات</button>
+<button class="tab-btn" onclick="switchTab(this,'c30u')">لمن هو مناسب؟</button></div>
+<div class="tab-pane active" id="c30f"><ul><li>Multi-Mode ألياف متعددة</li><li>حتى 2 كم</li><li>SC/UPC منفذ ألياف</li></ul></div>
+<div class="tab-pane" id="c30u"><p>داخل المباني، مسافات قصيرة</p></div>
+<a class="cta" href="tel:+9647700000000">اتصل بنا</a></div></div></main></div>
 <script>
-/* ===== PRODUCT DATA ===== */
-const P = [
- // ACCESS POINTS
- {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP613 · Wi-Fi 6 AX1800',price:'100,000',img:'https://static.tp-link.com/upload/image-line/overview_01_large_20250109095828u.jpg',
-  ben:['سرعات Wi-Fi 6 حتى 1800 ميجابت','تركيب سقفي أنيق وتغطية واسعة','إدارة سحابية مجانية عبر Omada']},
- {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP653 · Wi-Fi 6 AX3000',price:'135,000',img:'https://static.tp-link.com/upload/image-line/EAP650_EU_3.0_overview_01_large_20260206072215k.jpg',
-  ben:['أداء AX3000 لكثافة مستخدمين عالية','مثالية للمكاتب والمقاهي','منفذ جيجابت مع دعم PoE']},
- {cat:'ap',brand:'tp',name:'نقطة وصول Wi-Fi 7',model:'TP-Link EAP772 · BE9300 ثلاثية النطاق',price:'250,000',img:'https://static.tp-link.com/upload/image-line/EAP770_UN_2.0_overview_01_large_20250428031950o.jpg',
-  ben:['أحدث تقنية Wi-Fi 7 ثلاثية النطاق','سرعات هائلة تصل 9.3 جيجابت','جاهزة للمستقبل ولأكثر الأجهزة طلباً']},
- {cat:'ap',brand:'tp',name:'نقطة وصول سقفية',model:'TP-Link EAP245 · AC1750 Wi-Fi 5',price:'100,000',img:'https://static.tp-link.com/upload/image-line/EAP245_EU_3.0_01_large_1533284008713q_large_20211013013306q.jpg',
-  ben:['موثوقية AC1750 مجربة','تغطية ثابتة للمساحات المتوسطة','قيمة ممتازة مقابل السعر']},
- {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول داخلية/خارجية',model:'TP-Link EAP225-Outdoor · AC1200',price:'110,000',
-  ben:['مقاومة للعوامل الجوية للخارج','مناسبة للحدائق والساحات','تركيب مرن داخلي وخارجي']},
- {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول خارجية IP67',model:'TP-Link EAP610-Outdoor · AX1800',price:'180,000',
-  ben:['حماية IP67 ضد الماء والغبار','Wi-Fi 6 للأماكن المفتوحة','تحمل درجات حرارة قاسية']},
- {cat:'ap',brand:'tp',dev:'ap',name:'نقطة وصول سقفية',model:'TP-Link EAP115 · 300Mbps N',price:'35,000',
-  ben:['الخيار الأوفر لتوسعة الشبكة','تركيب سهل وسريع','مثالية للمنازل والمحلات الصغيرة']},
- {cat:'ap',brand:'hw',dev:'ap',name:'نقطة وصول ذكية Huawei',model:'Huawei AP761 · 2.975Gbps',price:'409,500',
-  ben:['أداء مؤسسي فائق حتى 2.97 جيجابت','تقنيات Huawei الذكية للتغطية','مثالية للشركات الكبيرة']},
- {cat:'ap',brand:'hw',dev:'ap',name:'نقطة وصول Wi-Fi 7 Huawei',model:'Huawei AP371 · BE3600',price:'193,250',
-  ben:['تقنية Wi-Fi 7 من Huawei','سرعات BE3600 عالية الكفاءة','استقرار وأمان عاليان']},
-
- // SMART SWITCHES
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي PoE+',model:'TP-Link SG2005P-PD · 5 منافذ جيجابت',price:'134,500',
-  ben:['تغذية PoE+ للأجهزة مباشرة','إدارة ذكية عبر Omada','حجم مدمج وعملي']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي JetStream',model:'TP-Link TL-SG2008P · 8 منافذ PoE+',price:'115,250',
-  ben:['8 منافذ مع تغذية PoE+','إدارة متقدمة VLAN و QoS','مثالي للكاميرات ونقاط الوصول']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش ذكي JetStream',model:'TP-Link TL-SG2216 · 16 منفذ + 2 SFP',price:'158,000',
-  ben:['16 منفذ جيجابت + ألياف SFP','إدارة ويب كاملة','توسعة مرنة للشبكات']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش مُدار L2+',model:'TP-Link TL-SG3428 · 24 منفذ + 4 SFP',price:'195,000',
-  ben:['إدارة L2+ احترافية','24 منفذ + 4 منافذ SFP','أمان وتوجيه ثابت متقدم']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش رف PoE+',model:'TP-Link TL-SG1218MP · 18 منفذ',price:'205,000',
-  ben:['16 منفذ PoE+ عالي القدرة','تصميم رف 19 بوصة','طاقة وفيرة للكاميرات والأجهزة']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش Reverse PoE مُدار',model:'TP-Link RP108GE · 8 منافذ',price:'57,500',
-  ben:['تقنية Reverse PoE الفريدة','إدارة ذكية بسعر اقتصادي','مرونة في التركيب']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش صناعي PoE++',model:'TP-Link IES210GPP · 10 منافذ',price:'371,250',
-  ben:['تصميم صناعي متين','PoE++ بقدرة عالية جداً','يتحمل البيئات القاسية']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش 2.5G PoE++',model:'TP-Link TL-SG105PP-M2 · 5 منافذ',price:'185,500',
-  ben:['منافذ 2.5 جيجابت فائقة السرعة','PoE++ للأجهزة الحديثة','جاهز لشبكات الجيل القادم']},
- {cat:'sw',brand:'hw',dev:'switch',name:'سويتش Huawei جيجابت',model:'Huawei S110-8T2ST · 8 منافذ',price:'105,000',
-  ben:['جودة Huawei المؤسسية','8 منافذ جيجابت موثوقة','أداء ثابت طويل الأمد']},
-
- // UNMANAGED SWITCHES
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش PoE+ مكتبي',model:'TP-Link TL-SL1311P · 8 منافذ',price:'100,000',
-  ben:['تشغيل فوري بدون إعداد','تغذية PoE+ مدمجة','مثالي للكاميرات المراقبة']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش مكتبي',model:'TP-Link TL-SF1024M · 24 منفذ',price:'53,750',
-  ben:['24 منفذ بسعر اقتصادي','توصيل سريع وسهل','مناسب للمكاتب الكبيرة']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link LS1008G · 8 منافذ',price:'25,000',
-  ben:['الخيار الأوفر للجيجابت','بلا إعداد - وصّل وشغّل','استهلاك طاقة منخفض']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link TL-SG1008D · 8 منافذ',price:'30,000',
-  ben:['8 منافذ جيجابت كاملة','هيكل معدني متين','أداء سريع ومستقر']},
- {cat:'sw',brand:'tp',dev:'switch',name:'سويتش جيجابت مكتبي',model:'TP-Link TL-SG1005D · 5 منافذ',price:'32,000',
-  ben:['مثالي للمكاتب المنزلية','5 منافذ جيجابت','تصميم مدمج وصامت']},
-
- // GATEWAYS
- {cat:'gw',brand:'tp',dev:'router',name:'بوابة VPN 3 في 1',model:'TP-Link ER7212PC · Gateway',price:'320,000',
-  ben:['راوتر + سويتش + متحكم معاً','VPN آمن للفروع والعمل عن بعد','إدارة موحدة عبر Omada']},
- {cat:'gw',brand:'tp',dev:'router',name:'راوتر 4G LTE + WiFi',model:'TP-Link ER706W-4G',price:'385,000',
-  ben:['اتصال خلوي 4G احتياطي','واي فاي مدمج للمكاتب','مثالي للمواقع بلا ألياف']},
-
- // CONTROLLERS
- {cat:'ctrl',brand:'tp',dev:'conv',name:'متحكم Omada',model:'TP-Link OC200 · يدير 100 جهاز',price:'105,000',
-  ben:['إدارة مركزية لـ100 جهاز','مراقبة الشبكة في الوقت الفعلي','إعداد سهل بدون خادم']},
-
- // MEDIA CONVERTERS / POE
- {cat:'mc',brand:'tp',dev:'conv',name:'حاقن PoE++ جيجابت',model:'TP-Link POE170S · 60W',price:'77,000',
-  ben:['طاقة 60 واط للأجهزة القوية','إضافة PoE لأي شبكة','تركيب بسيط وفوري']},
- {cat:'mc',brand:'tp',dev:'conv',name:'محول وسائط WDM',model:'TP-Link TL-FC111B-20',price:'23,000',
-  ben:['تحويل نحاس إلى ألياف ضوئية','مسافات تصل 20 كم','سعر اقتصادي جداً']},
- {cat:'mc',brand:'tp',dev:'conv',name:'محول وسائط WDM',model:'TP-Link TL-FC111A-20',price:'23,000',
-  ben:['الطرف المقابل لـ FC111B','اتصال ألياف موثوق','تركيب سريع']},
- {cat:'mc',brand:'tp',dev:'conv',name:'محول ألياف أحادي',model:'TP-Link MC110CS · Single-Mode',price:'45,000',
-  ben:['ألياف أحادية النمط لمسافات طويلة','نقل بيانات مستقر','جودة TP-Link المضمونة']},
- {cat:'mc',brand:'tp',dev:'conv',name:'محول ألياف متعدد',model:'TP-Link MC100CM · Multi-Mode',price:'46,000',
-  ben:['ألياف متعددة النمط للمسافات القصيرة','أداء عالي داخل المباني','توافق واسع']},
-];
-
-function devHTML(d){
-  if(d==='switch') return '<div class="device dev-switch">'+'<i></i>'.repeat(8)+'</div>';
-  if(d==='router') return '<div class="device dev-router"></div>';
-  if(d==='conv') return '<div class="device dev-conv"></div>';
-  return '<div class="device dev-ap"></div>';
-}
-
-function buildCard(p){
-  const visual = p.img
-    ? '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'
-    : devHTML(p.dev||'ap');
-  const badge = '<span class="brand-badge '+(p.brand==='hw'?'b-hw':'b-tp')+'">'+(p.brand==='hw'?'Huawei':'TP-Link')+'</span>';
-  return '<div class="card">'+badge+
-    '<div class="img-wrap">'+visual+'</div>'+
-    '<h3>'+p.name+'</h3>'+
-    '<div class="model">'+p.model+'</div>'+
-    '<div class="price">'+p.price+' د.ع</div>'+
-    '<ul>'+p.ben.map(b=>'<li>'+b+'</li>').join('')+'</ul>'+
-    '<button class="btn-call">اتصل بنا</button>'+
-    '</div>';
-}
-
-// populate grids
-document.querySelectorAll('section.cat').forEach(sec=>{
-  const cat=sec.id;
-  const grid=sec.querySelector('.grid');
-  grid.innerHTML = P.filter(p=>p.cat===cat).map(buildCard).join('');
-});
-
-// staggered magical reveal
-function reveal(sec){
-  const cards=sec.querySelectorAll('.card');
-  cards.forEach((c,i)=>{
-    c.classList.remove('reveal');c.style.opacity='0';c.style.transform='scale(.8)';
-    setTimeout(()=>c.classList.add('reveal'), i*90);
-  });
-}
-reveal(document.getElementById('ap'));
-
-// tab switching
-const tabs=document.getElementById('tabs');
-tabs.addEventListener('click',e=>{
-  const btn=e.target.closest('button');if(!btn)return;
-  tabs.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const cat=btn.dataset.cat;
-  document.querySelectorAll('section.cat').forEach(s=>s.classList.remove('show'));
-  const sec=document.getElementById(cat);
-  sec.classList.add('show');
-  reveal(sec);
-  sec.scrollIntoView({behavior:'smooth',block:'start'});
-});
-
-/* ===== GOLDEN PARTICLE SYSTEM ===== */
-const cv=document.getElementById('particles');
-const ctx=cv.getContext('2d');
-let W,H,parts=[];
-function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
-resize();addEventListener('resize',resize);
-function mk(){
-  return{
-    x:Math.random()*W, y:H+Math.random()*H,
-    r:Math.random()*2.2+0.6,
-    s:Math.random()*0.7+0.25,
-    a:Math.random()*0.6+0.2,
-    tw:Math.random()*Math.PI*2,
-    gold:Math.random()>0.35
-  };
-}
-for(let i=0;i<90;i++){parts.push(mk());}
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  parts.forEach(p=>{
-    p.y-=p.s; p.tw+=0.04;
-    p.x+=Math.sin(p.tw)*0.3;
-    if(p.y< -10){Object.assign(p,mk());p.y=H+10;}
-    const flick=p.a*(0.6+0.4*Math.sin(p.tw));
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    const col=p.gold?'240,165,0':'0,212,255';
-    ctx.fillStyle='rgba('+col+','+flick+')';
-    ctx.shadowBlur=8;ctx.shadowColor='rgba('+col+',0.8)';
-    ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
-</html>
+const canvas=document.getElementById('particles');const ctx=canvas.getContext('2d');
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}resize();addEventListener('resize',resize);
+const particles=[];
+for(let i=0;i<90;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+ size:Math.random()*3+1,speedX:(Math.random()-0.5)*0.5,speedY:-Math.random()*0.8-0.2,
+ opacity:Math.random()*0.7+0.3,color:Math.random()>0.5?'#f0a500':'#00d4ff'})}
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
+ particles.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;
+  if(p.y<-10){p.y=canvas.height+10;p.x=Math.random()*canvas.width}
+  if(p.x<-10)p.x=canvas.width+10;if(p.x>canvas.width+10)p.x=-10;
+  ctx.globalAlpha=p.opacity;ctx.fillStyle=p.color;ctx.beginPath();
+  ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=p.opacity*0.4;ctx.shadowBlur=8;ctx.shadowColor=p.color});
+ ctx.globalAlpha=1;ctx.shadowBlur=0;requestAnimationFrame(animate)}animate();
+const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{
+ if(entry.isIntersecting){setTimeout(()=>{entry.target.classList.add('revealed')},i*80)}})},{threshold:0.1});
+document.querySelectorAll('.magic-reveal').forEach(el=>observer.observe(el));
+function switchTab(btn,paneId){const card=btn.closest('.product-card');
+ card.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+ card.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+ btn.classList.add('active');card.querySelector('#'+paneId).classList.add('active')}
+document.querySelectorAll('.product-card').forEach(card=>{
+ card.addEventListener('mouseenter',e=>{const r=card.getBoundingClientRect();
+  for(let i=0;i<10;i++){const s=document.createElement('div');s.className='sparkle';
+   s.style.left=(Math.random()*r.width)+'px';s.style.top=(Math.random()*r.height)+'px';
+   s.style.setProperty('--dx',(Math.random()-0.5)*80+'px');
+   s.style.setProperty('--dy',(Math.random()-0.5)*80+'px');
+   card.appendChild(s);setTimeout(()=>s.remove(),800)}})});
+</script></body></html>
