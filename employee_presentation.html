@@ -110,7 +110,16 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 0 8px #f0a500;animation:burst .8s ease-out forwards}
 @keyframes burst{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}}
 </style></head>
-<body><canvas id="particles"></canvas>
+<body><canvas id="particles"></canvas><section id="hero-landing" style="position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:transparent">
+<div style="margin-bottom:24px">
+<div style="width:90px;height:90px;border-radius:22px;background:linear-gradient(135deg,#f0a500,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:900;color:#0a1628;margin:0 auto 20px;box-shadow:0 0 40px rgba(240,165,0,0.6);animation:float 3s ease-in-out infinite">أ</div>
+</div>
+<h1 style="font-size:clamp(2.8rem,8vw,5.5rem);font-weight:900;background:linear-gradient(90deg,#f0a500,#fff,#f0a500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s infinite;background-size:200%;margin-bottom:20px;line-height:1.2">شركة الأماني</h1>
+<p style="font-size:clamp(1.1rem,3vw,1.6rem);color:#00d4ff;margin-bottom:16px;font-weight:600">وكيل معتمد لـ TP-Link و Huawei</p>
+<p style="font-size:clamp(1rem,2.5vw,1.35rem);color:#f0a500;margin-bottom:50px;font-weight:700;letter-spacing:0.05em">جودة &bull; ضمان &bull; سعر مميز</p>
+<a href="#aps" style="display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#f0a500,#ffcc44);color:#0a1628;border-radius:50px;font-weight:700;font-size:1.1rem;box-shadow:0 0 30px rgba(240,165,0,0.5);transition:all 0.3s;cursor:pointer;text-decoration:none" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">اكتشف المنتجات ↓</a>
+</section>
+
 <div class="layout"><aside class="sidebar"><h2>الأقسام</h2><a href="#aps"><span class="ic">📡</span><span>نقاط الوصول اللاسلكية</span></a><a href="#smartsw"><span class="ic">🔀</span><span>السويتشات الذكية</span></a><a href="#basicsw"><span class="ic">🔌</span><span>السويتشات العادية</span></a><a href="#routers"><span class="ic">🌐</span><span>البوابات والراوترات</span></a><a href="#ctrl"><span class="ic">🎛️</span><span>المتحكمات والانجكتورات</span></a><a href="#media"><span class="ic">💡</span><span>محولات الوسائط</span></a></aside><main class="main"><div class="header"><div class="logo"><div class="mark">أ</div><div class="txt"><h1>شركة الأماني</h1><p>حلول الشبكات في العراق</p></div></div><div class="badge">وكيل معتمد TP-Link | Huawei</div></div><section class="cover"><h2>دليل تدريب الموظفين</h2><p>المرجع التقني الكامل لفريق المبيعات في شركة الأماني — تعرّف على كل منتج، مواصفاته، طريقة بيعه، وحالات استخدامه لتقديم أفضل نصيحة للعميل.</p></section><h2 class="section-title">📚 مقدمة تقنية</h2><div class="edu-grid"><div class="edu-card magic-reveal"><div class="ic">📶</div><h4>أجيال الواي فاي 4/5/6/7</h4><p>Wi-Fi 4 (N) سرعات بسيطة 2.4GHz. Wi-Fi 5 (AC) أسرع بـ5GHz. Wi-Fi 6 (AX) يضيف OFDMA و MU-MIMO لتحمّل أجهزة أكثر. Wi-Fi 7 (BE) الأحدث مع MLO و 4K-QAM لسرعات قياسية.</p></div><div class="edu-card magic-reveal"><div class="ic">⚡</div><h4>ما هو PoE؟</h4><p>Power over Ethernet ينقل الكهرباء والبيانات معاً عبر كيبل الشبكة. لا حاجة لمقبس كهرباء قرب الجهاز — مثالي للكاميرات ونقاط الوصول. PoE+ حتى 30W و PoE++ حتى 60W+.</p></div><div class="edu-card magic-reveal"><div class="ic">🎚️</div><h4>Managed مقابل Unmanaged</h4><p>السويتش العادي (Unmanaged) يعمل فوراً بلا إعداد. الذكي (Managed) يدعم VLAN و QoS و ACL والإدارة عن بعد عبر Omada — للشبكات التي تحتاج تحكماً وأماناً.</p></div><div class="edu-card magic-reveal"><div class="ic">🔀</div><h4>نقطة الوصول مقابل الراوتر</h4><p>الراوتر يوزّع الإنترنت ويدير الشبكة ويحمّيها. نقطة الوصول (AP) توسّع تغطية الواي فاي فقط وتتصل بالراوتر بكيبل. لتغطية مساحة كبيرة نستخدم عدة APs.</p></div><div class="edu-card magic-reveal"><div class="ic">🎛️</div><h4>ما هو الكنترولر؟</h4><p>جهاز أو برنامج يدير كل أجهزة Omada من مكان واحد (مثل OC200). يضبط الإعدادات، يراقب الأداء، ويوزّع التحديثات لكل نقاط الوصول والسويتشات دفعة واحدة.</p></div><div class="edu-card magic-reveal"><div class="ic">💡</div><h4>محول الوسائط الضوئية</h4><p>يحوّل إشارة الإيثرنت النحاسية إلى ألياف ضوئية والعكس، لمدّ الشبكة لمسافات طويلة (حتى 20 كم). Single-Mode للمسافات الطويلة و Multi-Mode للقصيرة داخل المباني.</p></div><div class="edu-card magic-reveal"><div class="ic">🛡️</div><h4>بوابة الـ VPN</h4><p>البوابة (Gateway) تربط الشبكة بالإنترنت وتوفّر اتصال VPN آمن بين الفروع أو للموظفين عن بعد، مع جدار حماية. ER7212PC تجمع راوتر وسويتش وكنترولر في جهاز واحد.</p></div></div><h2 class="section-title">📊 جدول مقارنة سريع</h2><table class="cmp-table"><tr><th>الجيل</th><th>المعيار</th><th>أقصى سرعة</th><th>أبرز ميزة</th></tr>
 <tr><td>Wi-Fi 4</td><td>802.11n</td><td>300 Mbps</td><td>أساسي 2.4GHz</td></tr>
 <tr><td>Wi-Fi 5</td><td>802.11ac</td><td>1750 Mbps</td><td>5GHz + MU-MIMO</td></tr>
@@ -175,7 +184,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e4p"><p>يغطي الحدائق والمناطق الخارجية</p><ul><li>للداخل والخارج</li><li>تجوال سلس Seamless Roaming</li><li>إدارة Omada</li></ul></div>
 <div class="tab-pane" id="e4u"><p>حدائق، مواقف سيارات، مناطق مفتوحة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link EAP610-Outdoor" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device outdoor"><div class="ant"></div><div class="ant"></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/EAP650-Outdoor_UN_1.0_overview_01_large_20251023023112f.jpg" alt="TP-Link EAP610-Outdoor" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device outdoor"><div class="ant"></div><div class="ant"></div></div></div></div>
 <h3>TP-Link EAP610-Outdoor</h3><div class="model">EAP610-Outdoor</div>
 <div class="price">180,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -197,7 +206,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e6p"><p>الأرخص للاستخدامات البسيطة</p><ul><li>سعر اقتصادي جداً</li><li>سهل التركيب</li><li>مناسب للاستخدام البسيط</li></ul></div>
 <div class="tab-pane" id="e6u"><p>محلات صغيرة، ميزانية محدودة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="Huawei AP761" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
+<div class="img-container"><img src="https://content.storefront7.co.za/stores/za.co.storefront8.3qdl9w.eurobyte/products/AP761/pictures/1_yhc9.jpg" alt="Huawei AP761" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
 <h3>Huawei AP761</h3><div class="model">AP761</div>
 <div class="price">409,500 <span>د.ع</span></div>
 <div class="tabs">
@@ -208,7 +217,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e7p"><p>نقطة وصول Huawei الاحترافية</p><ul><li>هوائيات ذكية Built-in Smart Antennas</li><li>سرعة 2.975 Gbps</li><li>تغطية دقيقة وواسعة</li></ul></div>
 <div class="tab-pane" id="e7u"><p>مشاريع Huawei، شركات كبيرة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="Huawei AP371" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
+<div class="img-container"><img src="https://5928f1f8.delivery.rocketcdn.me/wp-content/uploads/2025/03/AP371-600x840.png.webp" alt="Huawei AP371" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device disc"><div class="disc-inner"></div></div></div></div>
 <h3>Huawei AP371</h3><div class="model">AP371</div>
 <div class="price">193,250 <span>د.ع</span></div>
 <div class="tabs">
@@ -307,7 +316,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e16p"><p>سويتش 2.5G صغير بطاقة PoE عالية</p><ul><li>2.5Gbps لكل منفذ</li><li>PoE++ 123W عالي</li><li>هيكل معدني متين</li></ul></div>
 <div class="tab-pane" id="e16u"><p>Wi-Fi 7 APs، كاميرات 4K</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="Huawei S110-8T2ST" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://cablesandswitches.com/cdn/shop/files/S110-8T2ST.png?v=1748249098" alt="Huawei S110-8T2ST" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>Huawei S110-8T2ST</h3><div class="model">S110-8T2ST</div>
 <div class="price">105,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -318,7 +327,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e17p"><p>سويتش Huawei موثوق للشبكات الأساسية</p><ul><li>8 منافذ GE + SFP</li><li>من Huawei</li><li>Auto MDI/MDIX</li></ul></div>
 <div class="tab-pane" id="e17u"><p>مشاريع Huawei، شبكات بسيطة</p></div>
 <span class="warranty-pill">الضمان: 6 أشهر</span></div></div><h2 class="section-title" id="basicsw">🔌 السويتشات العادية</h2><div class="grid"><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link TL-SL1311P" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/01_large_20240204034257h.jpg" alt="TP-Link TL-SL1311P" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>TP-Link TL-SL1311P</h3><div class="model">TL-SL1311P</div>
 <div class="price">100,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -340,7 +349,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e19p"><p>24 منفذ بأرخص سعر</p><ul><li>24 منفذ 100Mbps</li><li>مناسب شبكات صغيرة</li><li>سعر اقتصادي</li></ul></div>
 <div class="tab-pane" id="e19u"><p>مكاتب صغيرة، شبكات بسيطة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link LS1008G" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/LS1008G-01_large_1564562206436w.jpg" alt="TP-Link LS1008G" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>TP-Link LS1008G</h3><div class="model">LS1008G</div>
 <div class="price">25,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -351,7 +360,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e20p"><p>8 منافذ جيجابت بأقل سعر</p><ul><li>8 منافذ جيجابت</li><li>Plug & Play</li><li>أرخص سعر جيجابت</li></ul></div>
 <div class="tab-pane" id="e20u"><p>منازل، مكاتب صغيرة، ميزانية محدودة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link TL-SG1008D" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/res/images/products/TL-SG1008D_un_V6_default.jpg" alt="TP-Link TL-SG1008D" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>TP-Link TL-SG1008D</h3><div class="model">TL-SG1008D</div>
 <div class="price">30,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -362,7 +371,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e21p"><p>8 منافذ جيجابت موثوق</p><ul><li>8 منافذ جيجابت</li><li>Green Ethernet</li><li>Plug & Play</li></ul></div>
 <div class="tab-pane" id="e21u"><p>منازل، مكاتب صغيرة</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link TL-SG1005D" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/TL-SG1005D(UN)8.0-1000x750px_large_1525221973877a.jpg" alt="TP-Link TL-SG1005D" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>TP-Link TL-SG1005D</h3><div class="model">TL-SG1005D</div>
 <div class="price">32,000 <span>د.ع</span></div>
 <div class="tabs">
@@ -428,7 +437,7 @@ a{color:inherit;text-decoration:none}
 <div class="tab-pane" id="e27p"><p>يمدد الشبكة لمسافات طويلة بليف واحد</p><ul><li>إيثرنت ↔ ألياف ضوئية</li><li>مسافات حتى 20 كم</li><li>تقنية WDM (ليف واحد)</li></ul></div>
 <div class="tab-pane" id="e27u"><p>يعمل مع TL-FC111A-20 كزوج</p></div>
 <span class="warranty-pill">الضمان: 12 شهر</span></div><div class="product-card magic-reveal">
-<div class="img-container"><img src="" alt="TP-Link TL-FC111A-20" class="product-img" style="display:none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<div class="img-container"><img src="https://static.tp-link.com/upload/image-line/FC111A-20(TL-FC111A-20)_normal_20250208084631s.jpg" alt="TP-Link TL-FC111A-20" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="css-device-wrap" style="display:flex"><div class="css-device box"><div class="ports"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
 <h3>TP-Link TL-FC111A-20</h3><div class="model">TL-FC111A-20</div>
 <div class="price">23,000 <span>د.ع</span></div>
 <div class="tabs">
