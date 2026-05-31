@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>بروشور - TP-Link EAP613</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A5 portrait;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #0a1628;
+    width: 148mm;
+    min-height: 210mm;
+    margin: 0 auto;
+    color: #e8eef7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== خلفية النجوم ===== */
+  .stars {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(240,165,0,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(0,212,255,0.10) 0%, transparent 40%),
+      linear-gradient(160deg, #0a1628 0%, #0d1f38 50%, #091522 100%);
+    z-index: 0;
+  }
+
+  .star-dots {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle, rgba(240,165,0,0.8) 1px, transparent 1px),
+      radial-gradient(circle, rgba(0,212,255,0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 60px 60px, 90px 90px, 45px 45px;
+    background-position: 10px 10px, 30px 45px, 55px 25px;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 210mm;
+    padding: 0;
+  }
+
+  /* ===== رأس البروشور ===== */
+  .header {
+    background: linear-gradient(135deg, rgba(240,165,0,0.15), rgba(0,212,255,0.08));
+    border-bottom: 2px solid rgba(240,165,0,0.4);
+    padding: 8mm 7mm 6mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .company-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f0a500, #00d4ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #0a1628;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(240,165,0,0.5);
+  }
+
+  .company-name {
+    font-size: 1.15rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #f0a500, #ffdd88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .company-tagline {
+    font-size: 0.6rem;
+    color: #00d4ff;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tp-badge {
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 0.6rem;
+    color: #00d4ff;
+    font-weight: 700;
+  }
+
+  /* ===== قسم الصورة ===== */
+  .product-hero {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6mm 7mm 4mm;
+    position: relative;
+  }
+
+  .wifi-badge {
+    position: absolute;
+    top: 5mm;
+    left: 7mm;
+    background: linear-gradient(135deg, #f0a500, #ffcc33);
+    color: #0a1628;
+    font-size: 0.55rem;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 12px rgba(240,165,0,0.5);
+  }
+
+  .product-img-wrap {
+    width: 100mm;
+    height: 52mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .product-img-wrap::before {
+    content: '';
+    position: absolute;
+    width: 70mm;
+    height: 70mm;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .product-img-wrap img {
+    max-width: 90%;
+    max-height: 50mm;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 20px rgba(0,212,255,0.3));
+  }
+
+  /* ===== اسم المنتج ===== */
+  .product-name-block {
+    text-align: center;
+    padding: 0 7mm 4mm;
+    border-bottom: 1px solid rgba(240,165,0,0.2);
+  }
+
+  .product-series {
+    font-size: 0.6rem;
+    color: #00d4ff;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .product-name {
+    font-size: 1.4rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #fff, #e0ecff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .product-subtitle {
+    font-size: 0.68rem;
+    color: #a0b4cc;
+    margin-top: 3px;
+  }
+
+  /* ===== السعر ===== */
+  .price-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 4mm 7mm;
+    background: linear-gradient(90deg, rgba(240,165,0,0.08), rgba(240,165,0,0.15), rgba(240,165,0,0.08));
+    border-top: 1px solid rgba(240,165,0,0.2);
+    border-bottom: 1px solid rgba(240,165,0,0.2);
+    margin: 0 0;
+  }
+
+  .price-label {
+    font-size: 0.65rem;
+    color: #a0b4cc;
+    font-weight: 600;
+  }
+
+  .price-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #f0a500;
+    line-height: 1;
+  }
+
+  .price-currency {
+    font-size: 0.85rem;
+    color: #f0a500;
+    font-weight: 700;
+  }
+
+  /* ===== المميزات ===== */
+  .features-section {
+    padding: 4mm 7mm;
+    flex: 1;
+  }
+
+  .features-title {
+    font-size: 0.65rem;
+    color: #00d4ff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 4mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .features-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,212,255,0.5), transparent);
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 3.5mm;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(240,165,0,0.15);
+    border-radius: 8px;
+    padding: 2.5mm 3mm;
+  }
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, rgba(240,165,0,0.2), rgba(0,212,255,0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(240,165,0,0.3);
+  }
+
+  .feature-text {
+    flex: 1;
+  }
+
+  .feature-text strong {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #e8eef7;
+    line-height: 1.3;
+  }
+
+  .feature-text span {
+    font-size: 0.6rem;
+    color: #7a9ab5;
+    line-height: 1.3;
+  }
+
+  /* ===== مواصفات سريعة ===== */
+  .specs-strip {
+    display: flex;
+    gap: 0;
+    margin: 0 7mm 4mm;
+    border: 1px solid rgba(0,212,255,0.25);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .spec-item {
+    flex: 1;
+    text-align: center;
+    padding: 2.5mm 2mm;
+    border-left: 1px solid rgba(0,212,255,0.2);
+    background: rgba(0,212,255,0.05);
+  }
+
+  .spec-item:last-child { border-left: none; }
+
+  .spec-val {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: #00d4ff;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .spec-lbl {
+    font-size: 0.52rem;
+    color: #7a9ab5;
+    display: block;
+    margin-top: 1px;
+  }
+
+  /* ===== الضمان ===== */
+  .warranty-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0,212,255,0.08);
+    border-top: 1px solid rgba(0,212,255,0.2);
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+    padding: 2mm 7mm;
+    margin-bottom: 4mm;
+    font-size: 0.62rem;
+    color: #00d4ff;
+    font-weight: 600;
+  }
+
+  /* ===== الفوتر ===== */
+  .footer {
+    padding: 4mm 7mm 5mm;
+    border-top: 1px solid rgba(240,165,0,0.25);
+    background: linear-gradient(0deg, rgba(240,165,0,0.06), transparent);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-bottom: 3mm;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.58rem;
+    color: #a0b4cc;
+  }
+
+  .contact-item .icon {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2mm;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-slogan {
+    font-size: 0.55rem;
+    color: rgba(240,165,0,0.7);
+    font-weight: 600;
+  }
+
+  .scan-badge {
+    background: linear-gradient(135deg, #f0a500, #00d4ff);
+    color: #0a1628;
+    font-size: 0.5rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  /* ===== للطباعة ===== */
+  @media print {
+    body {
+      width: 148mm;
+      height: 210mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .no-print { display: none !important; }
+  }
+
+  /* ===== زر الطباعة (يظهر فقط على الشاشة) ===== */
+  .print-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #f0a500, #ffcc33);
+    color: #0a1628;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(240,165,0,0.4);
+    z-index: 999;
+    transition: all 0.3s;
+  }
+  .print-btn:hover { transform: scale(1.05); }
+  @media print { .print-btn { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="star-dots"></div>
+
+<div class="content">
+
+  <!-- رأس البروشور -->
+  <div class="header">
+    <div class="company-brand">
+      <div class="logo-circle">أ</div>
+      <div>
+        <div class="company-name">شركة الأماني</div>
+        <div class="company-tagline">جودة · ضمان · سعر مميز</div>
+      </div>
+    </div>
+    <div class="brand-logo">
+      <div class="tp-badge">TP-Link</div>
+      <div class="tp-badge" style="color:#f0a500;border-color:rgba(240,165,0,0.4);background:rgba(240,165,0,0.12)">Omada</div>
+    </div>
+  </div>
+
+  <!-- قسم الصورة -->
+  <div class="product-hero">
+    <div class="wifi-badge">✦ Wi-Fi 6 · AX1800</div>
+    <div class="product-img-wrap">
+      <img src="https://static.tp-link.com/upload/image-line/overview_01_large_20250109095828u.jpg" alt="TP-Link EAP613">
+    </div>
+  </div>
+
+  <!-- اسم المنتج -->
+  <div class="product-name-block">
+    <div class="product-series">OMADA ACCESS POINT</div>
+    <div class="product-name">TP-Link EAP613</div>
+    <div class="product-subtitle">نقطة وصول Wi-Fi 6 سقفية — للمكاتب والفنادق والمحلات</div>
+  </div>
+
+  <!-- السعر -->
+  <div class="price-block">
+    <span class="price-label">السعر</span>
+    <div style="display:flex;align-items:baseline;gap:6px">
+      <span class="price-value">100,000</span>
+      <span class="price-currency">د.ع</span>
+    </div>
+  </div>
+
+  <!-- المميزات -->
+  <div class="features-section">
+    <div class="features-title">✦ أبرز المميزات</div>
+
+    <div class="feature-item">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-text">
+        <strong>سرعة لاسلكية تصل إلى 1775 Mbps</strong>
+        <span>أسرع بـ 3 أضعاف من Wi-Fi 5 العادي</span>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">👥</div>
+      <div class="feature-text">
+        <strong>يخدم عشرات الأجهزة في نفس الوقت</strong>
+        <span>تقنية OFDMA + MU-MIMO لأداء مستقر مع الازدحام</span>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">☁️</div>
+      <div class="feature-text">
+        <strong>إدارة مركزية من أي مكان</strong>
+        <span>تطبيق Omada Cloud — تحكم بالشبكة من هاتفك</span>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">🔌</div>
+      <div class="feature-text">
+        <strong>تركيب سهل — الكهرباء من الكيبل (PoE)</strong>
+        <span>بدون حاجة لسلك كهرباء منفصل</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- مواصفات سريعة -->
+  <div class="specs-strip">
+    <div class="spec-item">
+      <span class="spec-val">2.4/5GHz</span>
+      <span class="spec-lbl">ثنائي النطاق</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-val">1775Mbps</span>
+      <span class="spec-lbl">أقصى سرعة</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-val">Wi-Fi 6</span>
+      <span class="spec-lbl">الجيل السادس</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-val">PoE</span>
+      <span class="spec-lbl">كهرباء الكيبل</span>
+    </div>
+  </div>
+
+  <!-- الضمان -->
+  <div class="warranty-bar">
+    🛡️ &nbsp;الضمان: 10 أيام استبدال &nbsp;|&nbsp; ✅ منتج أصلي معتمد من TP-Link
+  </div>
+
+  <!-- الفوتر -->
+  <div class="footer">
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="icon">📞</span>
+        <span>للطلب والاستفسار: [رقم الهاتف]</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">💬</span>
+        <span>واتساب: [رقم الواتساب]</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📍</span>
+        <span>العراق — [العنوان]</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🌐</span>
+        <span>[الموقع أو الصفحة]</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-slogan">شركة الأماني · جودة · ضمان · سعر مميز</span>
+      <span class="scan-badge">وكيل معتمد</span>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ طباعة البروشور</button>
+
+</body>
+</html>
